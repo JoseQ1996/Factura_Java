@@ -58,6 +58,11 @@ private Set<Producto> lista;
             }
         }  
     } 
+     public Set<Producto> getLista(){
+ 
+            return lista;
+        
+    }
     
     
 }
