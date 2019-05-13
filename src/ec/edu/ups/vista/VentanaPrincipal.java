@@ -5,7 +5,14 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.vista.producto.VentanaCrearProducto;
+import ec.edu.ups.vista.cliente.VentanaListarClientes;
+import ec.edu.ups.vista.cliente.VentanaEliminarCliente;
+import ec.edu.ups.vista.cliente.VentanaBuscarCliente;
+import ec.edu.ups.vista.cliente.VentanaCrearCliente;
+import ec.edu.ups.vista.cliente.VentanaActualizarCliente;
 import ec.edu.ups.controladores.ControladorCliente;
+import ec.edu.ups.controladores.ControladorProducto;
 
 /**
  *
@@ -15,12 +22,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private VentanaCrearCliente crearCliente;
     private ControladorCliente controladorCliente;
+    private ControladorProducto controladorProducto;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
         controladorCliente = new ControladorCliente();
+        controladorProducto= new ControladorProducto();
     }
 
     /**
@@ -92,7 +101,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         clienteMenu.add(eliminarMenuItem);
 
+        listarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         listarMenuItem.setText("Listar");
+        listarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarMenuItemActionPerformed(evt);
+            }
+        });
         clienteMenu.add(listarMenuItem);
 
         menuBar.add(clienteMenu);
@@ -100,6 +115,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         crearProducto.setText("Producto");
 
         jMenuItem2.setText("Crear");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         crearProducto.add(jMenuItem2);
 
         jMenuItem3.setText("Buscar");
@@ -122,11 +142,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,6 +184,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         actualizarCliente.setVisible(true);
         desktopPane.add(actualizarCliente);
     }//GEN-LAST:event_actualizarAsMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        VentanaCrearProducto crearProducto = new VentanaCrearProducto(controladorProducto);
+        crearProducto.setVisible(true);
+        desktopPane.add(crearProducto);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void listarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMenuItemActionPerformed
+        // TODO add your handling code here:
+        VentanaListarClientes listarCliente = new VentanaListarClientes(controladorCliente);
+        listarCliente.setVisible(true);
+        desktopPane.add(listarCliente);
+    }//GEN-LAST:event_listarMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

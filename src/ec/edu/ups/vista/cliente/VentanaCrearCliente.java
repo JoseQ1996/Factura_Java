@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.cliente;
 
 import ec.edu.ups.controladores.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
@@ -53,7 +53,6 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Crear Cliente");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Cliente"));
 
@@ -170,7 +169,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         Cliente cliente = new Cliente();
-        
+
         cliente.setCedula(txtCedula.getText());
         cliente.setNombre(txtNombre.getText());
         cliente.setDireccion(txtDireccion.getText());
@@ -184,7 +183,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         txtNombre.setText("");
         txtDireccion.setText("");
         txtTelefono.setText("");
-        
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

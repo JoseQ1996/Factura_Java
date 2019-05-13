@@ -58,6 +58,11 @@ public class ControladorCliente {
             }
         }  
     } 
+    public Set<Cliente> getLista(){
+ 
+            return lista;
+        
+    }
     
     
 }
