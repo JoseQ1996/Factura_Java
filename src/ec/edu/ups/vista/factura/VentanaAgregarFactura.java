@@ -463,7 +463,7 @@ public class VentanaAgregarFactura extends javax.swing.JInternalFrame {
         int a = tblDetalle.getRowCount()-1;
         for (int i = a; i >= 0; i--) {
         tb.removeRow(tb.getRowCount()-1);
-        controladorFacturaDetalle.delete(i);// o con “modelo.removeRow(0);” o con
+        //controladorFacturaDetalle.delete(i);// o con “modelo.removeRow(0);” o con
         // “modelo.setNumRows(0);” también funciona
       }
       btnCrear.setEnabled(false);

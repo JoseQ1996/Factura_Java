@@ -32,6 +32,18 @@ import java.util.ResourceBundle;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private VentanaCrearCliente crearCliente;
+    private VentanaActualizarCliente actualizarCliente;
+    private VentanaEliminarCliente eliminarCliente;
+    private VentanaBuscarCliente buscarCliente;
+    private VentanaAgregarFactura agregarFactura;
+    private VentanaActualizarProducto actualizarProducto;
+    private VentanaCrearProducto crearProducto;
+    private VentanaBuscarProducto buscarProducto;
+    private VentanaEliminarProducto eliminarProducto;
+    private VentanaEliminarFactura eliminarFactura;
+    private VentanaListarClientes listarClientes;
+    private VentanaListarProductos listarProductos;
+    private VentanaBuscarFactura buscarFactura;
     private ControladorCliente controladorCliente;
     private ControladorProducto controladorProducto;
     private ControladorFacturaCabecera controladorFacturaCabecera;
@@ -49,12 +61,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorFacturaCabecera=new ControladorFacturaCabecera();
         controladorFacturaDetalle=new ControladorFacturaDetalle();
         System.out.println("Localizacion por defecto: "+Locale.getDefault().getLanguage());
-        localizacion= new Locale("en","US");
-        Locale.setDefault(localizacion);
-        System.out.println("Localizacion Forzada: "+Locale.getDefault().getLanguage());
-        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
-        System.out.println(mensajes.getString("menu.item.crear"));
-        cambiarIdioma();
+        //localizacion= new Locale("en","US");
+        //Locale.setDefault(localizacion);
+        //System.out.println("Localizacion Forzada: "+Locale.getDefault().getLanguage());
+        //mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        //System.out.println(mensajes.getString("menu.item.crear"));
+        //cambiarIdioma();
     }
     
     public void cambiarIdioma(){
@@ -86,7 +98,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         itmEspañol.setText(mensajes.getString("menu.item.español"));
         itmInlges.setText(mensajes.getString("menu.item.ingles"));
         
-        
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -296,9 +308,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itmEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarClienteActionPerformed
-        VentanaEliminarCliente eliminarCliente = new VentanaEliminarCliente(controladorCliente);
+        if(eliminarCliente == null || !eliminarCliente.isVisible()){
+        eliminarCliente = new VentanaEliminarCliente(controladorCliente);
         eliminarCliente.setVisible(true);
         desktopPane.add(eliminarCliente);
+        VentanaEliminarCliente.cambiarIdioma(localizacion);
+           
+        }
     }//GEN-LAST:event_itmEliminarClienteActionPerformed
 
     private void itmCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearClienteActionPerformed
@@ -307,63 +323,87 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             crearCliente = new VentanaCrearCliente(controladorCliente);
             crearCliente.setVisible(true);
             desktopPane.add(crearCliente);
+            VentanaCrearCliente.cambiarIdioma(localizacion);
         }
         
     }//GEN-LAST:event_itmCrearClienteActionPerformed
 
     private void itmBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarClienteActionPerformed
-        VentanaBuscarCliente buscarCliente = new VentanaBuscarCliente(controladorCliente);
+        if(buscarCliente == null || !buscarCliente.isVisible()){
+        buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
         desktopPane.add(buscarCliente);
+        VentanaBuscarCliente.cambiarIdioma(localizacion);
+        }
     }//GEN-LAST:event_itmBuscarClienteActionPerformed
 
     private void itmActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarClienteActionPerformed
         // TODO add your handling code here:
-        VentanaActualizarCliente actualizarCliente = new VentanaActualizarCliente(controladorCliente);
+        if(actualizarCliente == null || !actualizarCliente.isVisible()){
+        actualizarCliente = new VentanaActualizarCliente(controladorCliente);
         actualizarCliente.setVisible(true);
         desktopPane.add(actualizarCliente);
+        VentanaActualizarCliente.cambiarIdioma(localizacion);
+        }
     }//GEN-LAST:event_itmActualizarClienteActionPerformed
 
     private void itmCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearProductoActionPerformed
         // TODO add your handling code here:
-        VentanaCrearProducto crearProducto = new VentanaCrearProducto(controladorProducto);
+        if(crearProducto == null || !crearProducto.isVisible()){
+        crearProducto = new VentanaCrearProducto(controladorProducto);
         crearProducto.setVisible(true);
         desktopPane.add(crearProducto);
+        VentanaCrearProducto.cambiarIdioma(localizacion);
+        }
     }//GEN-LAST:event_itmCrearProductoActionPerformed
 
     private void itmListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarClienteActionPerformed
         // TODO add your handling code here:
+        if(listarClientes == null || !listarClientes.isVisible()){
         VentanaListarClientes listarCliente = new VentanaListarClientes(controladorCliente);
         listarCliente.setVisible(true);
         desktopPane.add(listarCliente);
+        }
     }//GEN-LAST:event_itmListarClienteActionPerformed
 
     private void itmBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarProductoActionPerformed
         // TODO add your handling code here:
-        VentanaBuscarProducto buscarProducto = new VentanaBuscarProducto(controladorProducto);
+        if(buscarProducto == null || !buscarProducto.isVisible()){
+        buscarProducto = new VentanaBuscarProducto(controladorProducto);
         buscarProducto.setVisible(true);
         desktopPane.add(buscarProducto);
+        VentanaBuscarProducto.cambiarIdioma(localizacion);
+        }
     }//GEN-LAST:event_itmBuscarProductoActionPerformed
 
     private void itmActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarProductoActionPerformed
         // TODO add your handling code here:
-         VentanaActualizarProducto actualizarProducto = new VentanaActualizarProducto(controladorProducto);
+        if(actualizarProducto == null || !actualizarProducto.isVisible()){
+        actualizarProducto = new VentanaActualizarProducto(controladorProducto);
         actualizarProducto.setVisible(true);
         desktopPane.add(actualizarProducto);
+        VentanaActualizarProducto.cambiarIdioma(localizacion);
+        }
+        
     }//GEN-LAST:event_itmActualizarProductoActionPerformed
 
     private void itmEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarProductoActionPerformed
         // TODO add your handling code here:
-        VentanaEliminarProducto eliminarProducto = new VentanaEliminarProducto(controladorProducto);
+        if(eliminarProducto == null || !eliminarProducto.isVisible()){
+        eliminarProducto = new VentanaEliminarProducto(controladorProducto);
         eliminarProducto.setVisible(true);
         desktopPane.add(eliminarProducto);
+        VentanaEliminarProducto.cambiarIdioma(localizacion);
+        }
     }//GEN-LAST:event_itmEliminarProductoActionPerformed
 
     private void itmListarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarProductoActionPerformed
         // TODO add your handling code here:
-        VentanaListarProductos listarProducto = new VentanaListarProductos(controladorProducto);
-        listarProducto.setVisible(true);
-        desktopPane.add(listarProducto);
+        if(listarProductos == null || !listarProductos.isVisible()){
+        listarProductos = new VentanaListarProductos(controladorProducto);
+        listarProductos.setVisible(true);
+        desktopPane.add(listarProductos);
+        }
     }//GEN-LAST:event_itmListarProductoActionPerformed
 
     private void itmInlgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInlgesActionPerformed
@@ -371,6 +411,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion=new Locale ("en","US");
         Locale.setDefault(localizacion);
         cambiarIdioma();
+        VentanaCrearCliente.cambiarIdioma(localizacion);
     }//GEN-LAST:event_itmInlgesActionPerformed
 
     private void itmEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEspañolActionPerformed
@@ -378,27 +419,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion=new Locale ("es","EC");
         Locale.setDefault(localizacion);
         cambiarIdioma();
+        VentanaCrearCliente.cambiarIdioma(localizacion);
     }//GEN-LAST:event_itmEspañolActionPerformed
 
     private void itmCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearFacturaActionPerformed
         // TODO add your handling code here:
-        VentanaAgregarFactura agregarFactura=new VentanaAgregarFactura(controladorFacturaCabecera,controladorCliente,controladorProducto,controladorFacturaDetalle);
+        if(agregarFactura == null || !agregarFactura.isVisible()){
+        agregarFactura=new VentanaAgregarFactura(controladorFacturaCabecera,controladorCliente,controladorProducto,controladorFacturaDetalle);
         agregarFactura.setVisible(true);
         desktopPane.add(agregarFactura);
+        }
     }//GEN-LAST:event_itmCrearFacturaActionPerformed
 
     private void itmBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarFacturaActionPerformed
         // TODO add your handling code here:
-        VentanaBuscarFactura buscarFactura=new VentanaBuscarFactura(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
+        if(buscarFactura == null || !buscarFactura.isVisible()){
+        buscarFactura=new VentanaBuscarFactura(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
         buscarFactura.setVisible(true);
         desktopPane.add(buscarFactura);
+        }
     }//GEN-LAST:event_itmBuscarFacturaActionPerformed
 
     private void itmEliminarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarFacturaActionPerformed
         // TODO add your handling code here:
-        VentanaEliminarFactura eliminarFactura=new VentanaEliminarFactura(controladorFacturaCabecera);
+        if(eliminarFactura == null || !eliminarFactura.isVisible()){
+        eliminarFactura=new VentanaEliminarFactura(controladorFacturaCabecera);
         eliminarFactura.setVisible(true);
         desktopPane.add(eliminarFactura);
+        }
     }//GEN-LAST:event_itmEliminarFacturaActionPerformed
 
     /**

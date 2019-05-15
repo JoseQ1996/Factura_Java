@@ -107,6 +107,11 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Factura Encontrada");
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Factura"));
         jPanel1.setEnabled(false);
 

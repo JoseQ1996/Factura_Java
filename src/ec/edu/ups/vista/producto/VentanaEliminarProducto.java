@@ -7,11 +7,13 @@
 package ec.edu.ups.vista.producto;
 
 import ec.edu.ups.controladores.ControladorProducto;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author José Quinde
  */
 public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
@@ -19,11 +21,19 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
      * Creates new form VentanaEliminarProducto
      */
     private ControladorProducto controladorProducto;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
     public VentanaEliminarProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto= controladorProducto;
     }
+    public static void cambiarIdioma(Locale localizacion){
+         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+         labelCod.setText(mensajes.getString("cliente.codigo"));
+         btnEliminar.setText(mensajes.getString("boton.eliminar"));
+         btnCancelar.setText(mensajes.getString("boton.cancelar"));
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,10 +44,10 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        labelCod = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -46,7 +56,7 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Producto"));
 
-        jLabel5.setText("Código");
+        labelCod.setText("Código");
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,10 +65,10 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnActualizar.setText("Eliminar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -70,12 +80,12 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel5)
+                        .addComponent(labelCod)
                         .addGap(41, 41, 41)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(91, Short.MAX_VALUE))
@@ -86,10 +96,10 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(labelCod))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar)
                     .addComponent(btnCancelar))
                 .addGap(131, 131, 131))
         );
@@ -119,21 +129,21 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
          int codigo=Integer.parseInt(txtCodigo.getText());
         controladorProducto.delete(codigo);
         JOptionPane.showMessageDialog(this, "Producto se ha eliminado exitosamente","Producto Eliminado",JOptionPane.OK_OPTION);
        //vaciar txt
         txtCodigo.setText("");
-    }//GEN-LAST:event_btnActualizarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel jLabel5;
+    public static javax.swing.JButton btnCancelar;
+    public static javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel labelCod;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }
