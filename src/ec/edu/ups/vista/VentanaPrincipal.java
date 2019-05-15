@@ -438,7 +438,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion=new Locale ("en","US");
         Locale.setDefault(localizacion);
         cambiarIdioma();
-        VentanaCrearCliente.cambiarIdioma(localizacion);
     }//GEN-LAST:event_itmInlgesActionPerformed
 
     private void itmEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEspañolActionPerformed
@@ -446,7 +445,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion=new Locale ("es","EC");
         Locale.setDefault(localizacion);
         cambiarIdioma();
-        VentanaCrearCliente.cambiarIdioma(localizacion);
     }//GEN-LAST:event_itmEspañolActionPerformed
 
     private void itmCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearFacturaActionPerformed
