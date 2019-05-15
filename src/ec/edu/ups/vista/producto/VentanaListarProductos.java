@@ -9,26 +9,56 @@ package ec.edu.ups.vista.producto;
 import ec.edu.ups.controladores.ControladorProducto;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Producto;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Usuario
+ * @author José Quinde
  */
 public class VentanaListarProductos extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VentanaListarProductos
      */
+    //Declaracion de Variables
     ControladorProducto controladorProducto;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
+    public static DefaultTableModel modelo;     
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorProducto 
+     */
     public VentanaListarProductos(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto=controladorProducto;
+        
+        modelo = new DefaultTableModel();
+        //Da los nombres de las columnas de la tabla
+        Object[] columnas = {"Codigo","Nombre","Precio"};
+        modelo.setColumnIdentifiers(columnas);
+        tblProductos.setModel(modelo);
+        
         llenarDatos();
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+    public static void cambiarIdioma(Locale localizacion){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        Object[] columnas = {mensajes.getString("cliente.codigo"),mensajes.getString("cliente.nombre"), mensajes.getString("producto.precio")};
+        modelo.setColumnIdentifiers(columnas);
+       
+    }
+    /**
+     * Metodo que llena los datos de la tabla con los productos
+     */
  public void llenarDatos(){
-       DefaultTableModel modelo= (DefaultTableModel)tblProductos.getModel();
+     
          Set <Producto> lista= controladorProducto.getLista();
         for (Producto producto: lista){
             Object[] datos={producto.getCodigo(),

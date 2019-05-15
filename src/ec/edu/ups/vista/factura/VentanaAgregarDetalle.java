@@ -11,6 +11,8 @@ import ec.edu.ups.controladores.ControladorProducto;
 import ec.edu.ups.modelo.FacturaDetalle;
 import ec.edu.ups.modelo.Producto;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
@@ -23,11 +25,19 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaAgregarDetalle
      */
+    //Declaracion de Variables
     private ControladorFacturaDetalle controladorFacturaDetalle;
     private ControladorProducto controladorProducto;
     private Set<Producto> listaProductos;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
     double subTotal;
     int indice=0;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorFacturaDetalle
+     * @param controladorProducto 
+     */
     public VentanaAgregarDetalle(ControladorFacturaDetalle controladorFacturaDetalle,ControladorProducto controladorProducto) {
         initComponents();
         this.controladorFacturaDetalle=controladorFacturaDetalle;
@@ -39,11 +49,30 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
         }
    productoBuscado();
     }
-   
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+   public static void cambiarIdioma(Locale localizacion){
+         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+         labelCod.setText(mensajes.getString("cliente.codigo"));
+         labelPro.setText(mensajes.getString("producto.nombre"));
+         labelPrecio.setText(mensajes.getString("producto.precioUnitario"));
+         lblCantidad.setText(mensajes.getString("detalle.cantidad"));
+         btnCalcularSubTotal.setText(mensajes.getString("boton.CalSub"));
+         btnAnadirCesta.setText(mensajes.getString("boton.añaPro"));
+   }
+   /**
+    * Este metodo setea el precio del producto selecciona en el jcombobox
+    */
     public void productoBuscado(){
         Producto producto = buscarProducto();
         txtPrecioUnitario.setText(String.valueOf(producto.getPrecio()));
     }
+    /**
+     * Este metodo retorna el producto del jcombox dependiendo la seleccion
+     * @return 
+     */
      public Producto buscarProducto() {
         Producto l = new Producto();
         for (Producto producto : listaProductos) {
@@ -66,15 +95,15 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
         btnAnadirCesta = new javax.swing.JButton();
         btnCalcularSubTotal = new javax.swing.JButton();
         cbxProducto = new javax.swing.JComboBox();
-        lblLibro = new javax.swing.JLabel();
+        labelPro = new javax.swing.JLabel();
         lblSubTotal = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         lblCantidad = new javax.swing.JLabel();
-        lblPrecioUnitario = new javax.swing.JLabel();
+        labelPrecio = new javax.swing.JLabel();
         txtPrecioUnitario = new javax.swing.JTextField();
         txtSubTotal = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        labelCod = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -106,8 +135,8 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
             }
         });
 
-        lblLibro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblLibro.setText("Producto");
+        labelPro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelPro.setText("Producto");
 
         lblSubTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblSubTotal.setText("Sub Total:");
@@ -119,8 +148,8 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
         lblCantidad.setText("Cantidad: ");
         lblCantidad.setToolTipText("");
 
-        lblPrecioUnitario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblPrecioUnitario.setText("Precio Unitario:");
+        labelPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelPrecio.setText("Precio Unitario:");
 
         txtPrecioUnitario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtPrecioUnitario.setForeground(new java.awt.Color(0, 0, 204));
@@ -137,7 +166,7 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
 
         txtCodigo.setEnabled(false);
 
-        jLabel1.setText("Codigo");
+        labelCod.setText("Codigo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +183,7 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPrecioUnitario)
+                            .addComponent(labelPrecio)
                             .addComponent(lblCantidad)
                             .addComponent(lblSubTotal))
                         .addGap(18, 18, 18)
@@ -164,8 +193,8 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
                             .addComponent(txtPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLibro)
-                            .addComponent(jLabel1))
+                            .addComponent(labelPro)
+                            .addComponent(labelCod))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,15 +207,15 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(labelCod))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLibro)
+                    .addComponent(labelPro)
                     .addComponent(cbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrecioUnitario))
+                    .addComponent(labelPrecio))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantidad)
@@ -206,6 +235,7 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnadirCestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirCestaActionPerformed
+        //Añade un detalle a la factura
         Producto producto = buscarProducto();
         FacturaDetalle facturaDetalle=new FacturaDetalle();
         facturaDetalle.setPrecio(Double.parseDouble(txtPrecioUnitario.getText()));
@@ -227,6 +257,7 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAnadirCestaActionPerformed
 
     private void btnCalcularSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularSubTotalActionPerformed
+        //Calcula el SubTotal del Detalle multiplicando la cantidad por el precio
         if (txtPrecioUnitario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Error Ingrese el Precio Unitario");
         } else if (txtCantidad.getText().isEmpty()) {
@@ -239,7 +270,7 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCalcularSubTotalActionPerformed
 
     private void cbxProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProductoActionPerformed
-        // TODO add your handling code here:
+        //Selecciona el producto dependiendo la opcion escojida en el jcomboBox
         productoBuscado();
     }//GEN-LAST:event_cbxProductoActionPerformed
 
@@ -249,14 +280,14 @@ public class VentanaAgregarDetalle extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadirCesta;
-    private javax.swing.JButton btnCalcularSubTotal;
+    public static javax.swing.JButton btnAnadirCesta;
+    public static javax.swing.JButton btnCalcularSubTotal;
     private javax.swing.JComboBox cbxProducto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblCantidad;
-    private javax.swing.JLabel lblLibro;
-    private javax.swing.JLabel lblPrecioUnitario;
-    private javax.swing.JLabel lblSubTotal;
+    public static javax.swing.JLabel labelCod;
+    public static javax.swing.JLabel labelPrecio;
+    public static javax.swing.JLabel labelPro;
+    public static javax.swing.JLabel lblCantidad;
+    public static javax.swing.JLabel lblSubTotal;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtPrecioUnitario;

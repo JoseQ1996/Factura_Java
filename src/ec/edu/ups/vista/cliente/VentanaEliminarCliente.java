@@ -20,13 +20,22 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaEliminarCliente
      */
+    //Declaracion de Variables
     private ControladorCliente controladorCliente;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorCliente 
+     */
     public VentanaEliminarCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
     public static void cambiarIdioma(Locale localizacion){
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
         labelCod.setText(mensajes.getString("cliente.codigo"));
@@ -124,12 +133,12 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        // Elimina al Cliente con el codigo
         int codigo=Integer.parseInt(txtCodigo.getText());
         controladorCliente.delete(codigo);
         JOptionPane.showMessageDialog(this, "Cliente se ha eliminado exitosamente","Cliente Eliminado",JOptionPane.OK_OPTION);

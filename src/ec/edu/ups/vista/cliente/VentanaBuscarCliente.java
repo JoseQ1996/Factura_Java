@@ -20,13 +20,22 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaBuscarCliente
      */
+    //Declaracion de Variables
     private ControladorCliente controladorCliente;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorCliente 
+     */
     public VentanaBuscarCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
     public static void cambiarIdioma(Locale localizacion){
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
         labelCod.setText(mensajes.getString("cliente.codigo"));
@@ -182,7 +191,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        // Busca al cliente por el codigo y lo muestra
         int codigo=Integer.parseInt(txtCodigo.getText());
         Cliente clienteBuscado=controladorCliente.read(codigo);
         txtNombre.setText(clienteBuscado.getNombre());
@@ -192,7 +201,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

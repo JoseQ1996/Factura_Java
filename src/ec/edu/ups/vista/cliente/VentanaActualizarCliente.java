@@ -21,13 +21,22 @@ public class VentanaActualizarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaActualizarCliente
      */
+    //Declaracion de Variables
     private ControladorCliente controladorCliente;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorCliente 
+     */
     public VentanaActualizarCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
      public static void cambiarIdioma(Locale localizacion){
          mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
          labelCod1.setText(mensajes.getString("cliente.codigo"));
@@ -190,12 +199,12 @@ public class VentanaActualizarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        // Busca al Cliente por el codigo ingresado
         int codigo=Integer.parseInt(txtCodigo.getText());
         Cliente clienteBuscado=controladorCliente.read(codigo);
         txtNombre.setText(clienteBuscado.getNombre());
@@ -205,7 +214,7 @@ public class VentanaActualizarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+        // Actualiza al Cliente
         Cliente cliente=new Cliente();
         cliente.setCodigo(Integer.parseInt(txtCodigo.getText()));
         cliente.setCedula(txtCedula.getText());

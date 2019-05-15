@@ -20,13 +20,22 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaBuscarProducto
      */
+    //Declaracion de Variables
     private ControladorProducto controladorProducto;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorProducto 
+     */
     public VentanaBuscarProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto=controladorProducto;
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
     public static void cambiarIdioma(Locale localizacion){
          mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
         labelCod.setText(mensajes.getString("cliente.codigo"));
@@ -152,12 +161,12 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+            // Busca el producto por el codigo
           int codigo=Integer.parseInt(txtCodigo.getText());
         Producto productoBuscado=controladorProducto.read(codigo);
         txtNombre.setText(productoBuscado.getNombre());

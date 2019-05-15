@@ -8,6 +8,8 @@ package ec.edu.ups.vista.cliente;
 
 import ec.edu.ups.controladores.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,15 +22,40 @@ public class VentanaListarClientes extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaListarClientes
      */
+    //Declaracion de Variables
     private ControladorCliente controladorCliente;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
+    public static DefaultTableModel modelo;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorCliente 
+     */
     public VentanaListarClientes(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente=controladorCliente;
+        modelo = new DefaultTableModel();
+        //Ingresa los nombres de las columnas
+        Object[] columnas = {"Codigo","Nombre","Cedula","Direccion","Telefono"};
+        modelo.setColumnIdentifiers(columnas);
+        tblCliente.setModel(modelo);
         llenarDatos();
     }
-
+    
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+    public static void cambiarIdioma(Locale localizacion){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        Object[] columnas = {mensajes.getString("cliente.codigo"),mensajes.getString("cliente.nombre"), mensajes.getString("cliente.cedula"),mensajes.getString("cliente.direccion"), mensajes.getString("cliente.telefono")};
+        modelo.setColumnIdentifiers(columnas);
+    }
+    /**
+     * Este Metodo llena los datos de la tabla con la lista de Clientes
+     */
     public void llenarDatos(){
-       DefaultTableModel modelo= (DefaultTableModel)tblCliente.getModel();
+       
          Set <Cliente> lista= controladorCliente.getLista();
         for (Cliente cliente: lista){
             Object[] datos={cliente.getCodigo(),

@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * @author José Quinde
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    //Declaracion de Variables
     private VentanaCrearCliente crearCliente;
     private VentanaActualizarCliente actualizarCliente;
     private VentanaEliminarCliente eliminarCliente;
@@ -54,6 +54,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+    /**
+     * Constructor Inicializa componentes
+     */
     public VentanaPrincipal() {
         initComponents();
         controladorCliente = new ControladorCliente();
@@ -68,7 +71,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //System.out.println(mensajes.getString("menu.item.crear"));
         //cambiarIdioma();
     }
-    
+    /**
+     * Metodo que cambia el idioma de toda la ventana Principal
+     * 
+     */
     public void cambiarIdioma(){
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
         //Cambia los menus
@@ -318,7 +324,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmEliminarClienteActionPerformed
 
     private void itmCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearClienteActionPerformed
-        
+        //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(crearCliente == null || !crearCliente.isVisible()){
             crearCliente = new VentanaCrearCliente(controladorCliente);
             crearCliente.setVisible(true);
@@ -329,6 +335,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmCrearClienteActionPerformed
 
     private void itmBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarClienteActionPerformed
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(buscarCliente == null || !buscarCliente.isVisible()){
         buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
@@ -338,7 +345,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmBuscarClienteActionPerformed
 
     private void itmActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarClienteActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(actualizarCliente == null || !actualizarCliente.isVisible()){
         actualizarCliente = new VentanaActualizarCliente(controladorCliente);
         actualizarCliente.setVisible(true);
@@ -348,7 +355,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmActualizarClienteActionPerformed
 
     private void itmCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearProductoActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(crearProducto == null || !crearProducto.isVisible()){
         crearProducto = new VentanaCrearProducto(controladorProducto);
         crearProducto.setVisible(true);
@@ -358,16 +365,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmCrearProductoActionPerformed
 
     private void itmListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarClienteActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(listarClientes == null || !listarClientes.isVisible()){
         VentanaListarClientes listarCliente = new VentanaListarClientes(controladorCliente);
         listarCliente.setVisible(true);
         desktopPane.add(listarCliente);
+        VentanaListarClientes.cambiarIdioma(localizacion);
         }
     }//GEN-LAST:event_itmListarClienteActionPerformed
 
     private void itmBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarProductoActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(buscarProducto == null || !buscarProducto.isVisible()){
         buscarProducto = new VentanaBuscarProducto(controladorProducto);
         buscarProducto.setVisible(true);
@@ -377,7 +385,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmBuscarProductoActionPerformed
 
     private void itmActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarProductoActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(actualizarProducto == null || !actualizarProducto.isVisible()){
         actualizarProducto = new VentanaActualizarProducto(controladorProducto);
         actualizarProducto.setVisible(true);
@@ -388,7 +396,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmActualizarProductoActionPerformed
 
     private void itmEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarProductoActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(eliminarProducto == null || !eliminarProducto.isVisible()){
         eliminarProducto = new VentanaEliminarProducto(controladorProducto);
         eliminarProducto.setVisible(true);
@@ -398,16 +406,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmEliminarProductoActionPerformed
 
     private void itmListarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarProductoActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(listarProductos == null || !listarProductos.isVisible()){
         listarProductos = new VentanaListarProductos(controladorProducto);
         listarProductos.setVisible(true);
         desktopPane.add(listarProductos);
+        VentanaListarProductos.cambiarIdioma(localizacion);
         }
     }//GEN-LAST:event_itmListarProductoActionPerformed
 
     private void itmInlgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInlgesActionPerformed
-        // TODO add your handling code here:
+        // Cambia el idioma en ingles del programa
         localizacion=new Locale ("en","US");
         Locale.setDefault(localizacion);
         cambiarIdioma();
@@ -415,7 +424,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmInlgesActionPerformed
 
     private void itmEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEspañolActionPerformed
-        // TODO add your handling code here:
+        // Cambia el idioma en español del programa
         localizacion=new Locale ("es","EC");
         Locale.setDefault(localizacion);
         cambiarIdioma();
@@ -423,29 +432,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmEspañolActionPerformed
 
     private void itmCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearFacturaActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(agregarFactura == null || !agregarFactura.isVisible()){
         agregarFactura=new VentanaAgregarFactura(controladorFacturaCabecera,controladorCliente,controladorProducto,controladorFacturaDetalle);
         agregarFactura.setVisible(true);
         desktopPane.add(agregarFactura);
+        VentanaAgregarFactura.cambiarIdioma(localizacion);
         }
     }//GEN-LAST:event_itmCrearFacturaActionPerformed
 
     private void itmBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarFacturaActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(buscarFactura == null || !buscarFactura.isVisible()){
         buscarFactura=new VentanaBuscarFactura(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
         buscarFactura.setVisible(true);
         desktopPane.add(buscarFactura);
+        VentanaBuscarFactura.cambiarIdioma(localizacion);
         }
     }//GEN-LAST:event_itmBuscarFacturaActionPerformed
 
     private void itmEliminarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarFacturaActionPerformed
-        // TODO add your handling code here:
+         //Verifica que solo este abierta una ventana, si no lo esta esta se abre
         if(eliminarFactura == null || !eliminarFactura.isVisible()){
         eliminarFactura=new VentanaEliminarFactura(controladorFacturaCabecera);
         eliminarFactura.setVisible(true);
         desktopPane.add(eliminarFactura);
+        VentanaEliminarFactura.cambiarIdioma(localizacion);
         }
     }//GEN-LAST:event_itmEliminarFacturaActionPerformed
 

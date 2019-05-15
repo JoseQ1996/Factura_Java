@@ -17,6 +17,8 @@ import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,15 +31,25 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaFacturaEncontrada
      */
-    DefaultTableModel modeloTabla;
+    //Declaracion de Variables
+    public static DefaultTableModel modeloTabla;
     int codigoFactura;
     private ControladorFacturaCabecera controladorFacturaCabecera;
     private ControladorCliente controladorCliente;
     private ControladorFacturaDetalle controladorFacturaDetalle;
     private ControladorProducto controladorProducto;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
     Set<Producto> listaProductos;
     Set<FacturaDetalle> listaFacturaDetalles;
     FacturaCabecera factura;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorFacturaCabecera
+     * @param controladorCliente
+     * @param controladorFacturaDetalle
+     * @param controladorProducto 
+     */
     public VentanaFacturaEncontrada(ControladorFacturaCabecera controladorFacturaCabecera,ControladorCliente controladorCliente,ControladorFacturaDetalle controladorFacturaDetalle,ControladorProducto controladorProducto) {
         initComponents();
         int codigo;
@@ -72,7 +84,23 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
         txtSubTotal.setText(String.valueOf(factura.getSubtotal()));
         txtTotal.setText(String.valueOf(factura.getTotal()));
     }
-
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+    public static void cambiarIdioma(Locale localizacion){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        labelCod.setText(mensajes.getString("cliente.codigo"));
+        labelCed.setText(mensajes.getString("cliente.cedula"));
+        labelNom.setText(mensajes.getString("cliente.nombre"));
+        labelDir.setText(mensajes.getString("cliente.direccion"));
+        labelTele.setText(mensajes.getString("cliente.telefono"));
+        btnBuscar.setText(mensajes.getString("factura.buscar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+        labelFac.setText(mensajes.getString("factura.nombre"));
+        Object[] columnas = {mensajes.getString("cliente.codigo"),mensajes.getString("cliente.nombre"), mensajes.getString("producto.precioUnitario"), mensajes.getString("detalle.cantidad"), "Sub Total"};
+        modeloTabla.setColumnIdentifiers(columnas);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,22 +111,22 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelCed = new javax.swing.JLabel();
+        labelNom = new javax.swing.JLabel();
+        labelDir = new javax.swing.JLabel();
+        labelTele = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelCod = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        labelFac = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalle = new javax.swing.JTable();
-        btnCrear = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -115,13 +143,13 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Factura"));
         jPanel1.setEnabled(false);
 
-        jLabel1.setText("Cedula");
+        labelCed.setText("Cedula");
 
-        jLabel2.setText("Nombre");
+        labelNom.setText("Nombre");
 
-        jLabel3.setText("Dirección");
+        labelDir.setText("Dirección");
 
-        jLabel4.setText("Teléfono");
+        labelTele.setText("Teléfono");
 
         txtCedula.setEnabled(false);
 
@@ -131,7 +159,7 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
 
         txtTelefono.setEnabled(false);
 
-        jLabel5.setText("Código");
+        labelCod.setText("Código");
 
         txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +175,7 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Fecha");
+        labelFac.setText("Fecha");
 
         txtFecha.setEnabled(false);
 
@@ -161,10 +189,10 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblDetalle);
 
-        btnCrear.setText("Buscar De Nuevo");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar De Nuevo");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -206,7 +234,7 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(40, 40, 40)
@@ -231,9 +259,9 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
                         .addGap(69, 69, 69))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(labelNom)
+                            .addComponent(labelDir)
+                            .addComponent(labelTele))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -244,18 +272,18 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
                                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtDireccion))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(labelFac)
                         .addGap(18, 18, 18)
                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(labelCed)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(labelCod)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(83, 83, 83)
@@ -272,24 +300,24 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(labelCod)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
+                        .addComponent(labelCed)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(labelNom)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
+                    .addComponent(labelFac)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(labelDir))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(labelTele)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +336,7 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnCrear)))
+                    .addComponent(btnBuscar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -334,16 +362,17 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Busca de nuevo otra Factura
         VentanaBuscarFactura buscarFactura = new VentanaBuscarFactura(controladorFacturaCabecera, controladorCliente, controladorFacturaDetalle, controladorProducto);
         VentanaPrincipal.desktopPane.add(buscarFactura);
         setVisible(false);
         buscarFactura.setVisible(true);
-    }//GEN-LAST:event_btnCrearActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
         // TODO add your handling code here:
@@ -351,20 +380,20 @@ public class VentanaFacturaEncontrada extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    public static javax.swing.JButton btnBuscar;
+    public static javax.swing.JButton btnCancelar;
+    public static javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel labelCed;
+    public static javax.swing.JLabel labelCod;
+    public static javax.swing.JLabel labelDir;
+    public static javax.swing.JLabel labelFac;
+    public static javax.swing.JLabel labelNom;
+    public static javax.swing.JLabel labelTele;
     public static javax.swing.JTable tblDetalle;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCodigo;

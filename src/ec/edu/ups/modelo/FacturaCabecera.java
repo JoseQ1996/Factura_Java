@@ -14,17 +14,27 @@ import java.util.List;
  * @author José Quinde
  */
 public class FacturaCabecera {
-    
+    //Declaracion de Variables
     private int codigo;
     private Date fecha;
     private Cliente cliente;
     private double subtotal;
     private double iva;
     private double total;
-
+    /**
+     * Constructor Vacio
+     */
     public FacturaCabecera() {
     }
-
+    /**
+     * Constructor ingresa todos los atributos
+     * @param codigo
+     * @param fecha
+     * @param cliente
+     * @param subtotal
+     * @param iva
+     * @param total 
+     */
     public FacturaCabecera(int codigo, Date fecha, Cliente cliente, double subtotal, double iva, double total) {
         this.codigo = codigo;
         this.fecha = fecha;
@@ -81,7 +91,10 @@ public class FacturaCabecera {
     public void setTotal(double total) {
         this.total = total;
     }
-
+    /**
+     * Imprime el toString
+     * @return 
+     */
     @Override
     public String toString() {
         return "FacturaCabecera{" + "codigo=" + codigo + ", fecha=" + fecha + ", cliente=" + cliente + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + '}';

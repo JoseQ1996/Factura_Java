@@ -22,18 +22,26 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaCrearCliente
      */
+    //Declaracion de Variables
     private ControladorCliente controladorCliente;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+      /**
+       * Constructor que inicializa los componentes
+       * @param controladorCliente 
+       */
+         
     public VentanaCrearCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
         txtCodigo.setText(String.valueOf(this.controladorCliente.getCodigo()));
     }
-    
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
    public static void cambiarIdioma(Locale localizacion){
-        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
-        
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());        
         labelCod.setText(mensajes.getString("cliente.codigo"));
         labelCed.setText(mensajes.getString("cliente.cedula"));
         labelNom.setText(mensajes.getString("cliente.nombre"));
@@ -184,9 +192,8 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        // Ingresa un cliente al controladorCliente
         Cliente cliente = new Cliente();
-
         cliente.setCedula(txtCedula.getText());
         cliente.setNombre(txtNombre.getText());
         cliente.setDireccion(txtDireccion.getText());
@@ -208,7 +215,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

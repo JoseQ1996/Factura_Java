@@ -11,6 +11,8 @@ import ec.edu.ups.controladores.ControladorFacturaCabecera;
 import ec.edu.ups.controladores.ControladorFacturaDetalle;
 import ec.edu.ups.controladores.ControladorProducto;
 import ec.edu.ups.vista.VentanaPrincipal;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,12 +24,22 @@ public class VentanaBuscarFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaBuscarFactura
      */
+    //Declaracion de Variables
     private ControladorFacturaCabecera controladorFacturaCabecera;
     private ControladorCliente controladorCliente;
     private ControladorFacturaDetalle controladorFacturaDetalle;
     private ControladorProducto controladorProducto;
+    private VentanaFacturaEncontrada facturaEncontrada;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
     public static int codigoFactura;
-    
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorFacturaCabecera
+     * @param controladorCliente
+     * @param controladorFacturaDetalle
+     * @param controladorProducto 
+     */
     public VentanaBuscarFactura(ControladorFacturaCabecera controladorFacturaCabecera,ControladorCliente controladorCliente,ControladorFacturaDetalle controladorFacturaDetalle,ControladorProducto controladorProducto) {
         initComponents();
         this.controladorFacturaCabecera=controladorFacturaCabecera;
@@ -35,7 +47,16 @@ public class VentanaBuscarFactura extends javax.swing.JInternalFrame {
         this.controladorFacturaDetalle=controladorFacturaDetalle;
         this.controladorProducto=controladorProducto;
     }
-
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+     public static void cambiarIdioma(Locale localizacion){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        lblNumeroFactura.setText(mensajes.getString("factura.codigo"));
+        btnBuscar.setText(mensajes.getString("boton.buscar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,22 +134,27 @@ public class VentanaBuscarFactura extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+                //Busca la Factura y llama a otra Ventana para visualizarla
                 codigoFactura = Integer.parseInt(txtNumeroFactura.getText());
-                VentanaFacturaEncontrada facturaEncontrada = new VentanaFacturaEncontrada(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
+                if(facturaEncontrada == null || !facturaEncontrada.isVisible()){
+                facturaEncontrada = new VentanaFacturaEncontrada(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
                 VentanaPrincipal.desktopPane.add(facturaEncontrada);
                 setVisible(false);
                 facturaEncontrada.setVisible(true);
+                VentanaFacturaEncontrada.cambiarIdioma(localizacion);
+                }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        setVisible(false);
+        // Cierra la ventana
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel lblNumeroFactura;
+    public static javax.swing.JButton btnBuscar;
+    public static javax.swing.JButton btnCancelar;
+    public static javax.swing.JLabel lblNumeroFactura;
     public static javax.swing.JTextField txtNumeroFactura;
     // End of variables declaration//GEN-END:variables
 }

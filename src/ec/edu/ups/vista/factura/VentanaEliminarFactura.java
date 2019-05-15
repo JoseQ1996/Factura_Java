@@ -7,6 +7,8 @@
 package ec.edu.ups.vista.factura;
 
 import ec.edu.ups.controladores.ControladorFacturaCabecera;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +20,28 @@ public class VentanaEliminarFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaEliminarFactura
      */
+    //Declaracion de Variables
     private ControladorFacturaCabecera controladorFacturaCabecera;
+    private Locale localizacion;
+    private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorFacturaCabecera 
+     */
     public VentanaEliminarFactura(ControladorFacturaCabecera controladorFacturaCabecera) {
         initComponents();
         this.controladorFacturaCabecera=controladorFacturaCabecera;
     }
-
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
+     public static void cambiarIdioma(Locale localizacion){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        lblNumeroFactura.setText(mensajes.getString("factura.codigo"));
+        btnEliminar.setText(mensajes.getString("boton.eliminar"));
+        btnCancelar.setText(mensajes.getString("boton.cancelar"));
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,6 +119,7 @@ public class VentanaEliminarFactura extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        //Elimina a la Factura por el Codigo
         int codigo=Integer.parseInt(txtCodigo.getText());
         controladorFacturaCabecera.delete(codigo);
         JOptionPane.showMessageDialog(this, "Cliente se ha eliminado exitosamente","Cliente Eliminado",JOptionPane.OK_OPTION);
@@ -109,14 +128,15 @@ public class VentanaEliminarFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        setVisible(false);
+        // Cierra la ventana
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JLabel lblNumeroFactura;
+    public static javax.swing.JButton btnCancelar;
+    public static javax.swing.JButton btnEliminar;
+    public static javax.swing.JLabel lblNumeroFactura;
     public static javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

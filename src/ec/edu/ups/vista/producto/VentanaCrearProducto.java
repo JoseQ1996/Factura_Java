@@ -21,14 +21,23 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaCrearProducto
      */
+    //Declaracion de Variables
       private ControladorProducto controladorProducto;
       private Locale localizacion;
       private static ResourceBundle mensajes;
+      /**
+       * Constructor que inicializa los componentes
+       * @param controladorProducto 
+       */
     public VentanaCrearProducto(ControladorProducto controladorProducto) {
         initComponents();
          this.controladorProducto = controladorProducto;
         txtCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
     public static void cambiarIdioma(Locale localizacion){
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
         labelCod.setText(mensajes.getString("cliente.codigo"));
@@ -151,9 +160,8 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-         Producto producto = new Producto();
-                
+        // Crea un Producto
+        Producto producto = new Producto();               
         producto.setNombre(txtNombre.getText());
         producto.setPrecio(Double.valueOf(txtPrecio.getText()));
         controladorProducto.crear(producto);
@@ -167,7 +175,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

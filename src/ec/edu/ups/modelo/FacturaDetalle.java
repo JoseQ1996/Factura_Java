@@ -11,17 +11,27 @@ package ec.edu.ups.modelo;
  * @author José Quinde
  */
 public class FacturaDetalle {
-    
+    //Declaracion de Variables
     private int codigo;
     private double precio;
     private int cantidad;
     private double subtotal;
     private Producto producto;
     private int codigoFactura;
-
+    /**
+     * Constructor Vacio
+     */
     public FacturaDetalle() {
     }
-
+    /**
+     * Constructor ingresa todos los atributos
+     * @param codigo
+     * @param precio
+     * @param cantidad
+     * @param subtotal
+     * @param producto
+     * @param codigoFactura 
+     */
     public FacturaDetalle(int codigo, double precio, int cantidad, double subtotal, Producto producto, int codigoFactura) {
         this.codigo = codigo;
         this.precio = precio;
@@ -82,7 +92,10 @@ public class FacturaDetalle {
     public void setCodigoFactura(int codigoFactura) {
         this.codigoFactura = codigoFactura;
     }
-
+    /**
+     * Imprime el toString
+     * @return 
+     */
     @Override
     public String toString() {
         return "FacturaDetalle{" + "codigo=" + codigo + ", precio=" + precio + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto + ", codigoFactura=" + codigoFactura + '}';

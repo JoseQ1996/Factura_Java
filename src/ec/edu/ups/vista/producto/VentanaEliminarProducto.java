@@ -20,13 +20,22 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaEliminarProducto
      */
+    //Declaracion de Variables
     private ControladorProducto controladorProducto;
     private Locale localizacion;
     private static ResourceBundle mensajes;
+    /**
+     * Constructor que inicializa los componentes
+     * @param controladorProducto 
+     */
     public VentanaEliminarProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto= controladorProducto;
     }
+    /**
+     * Metodo que cambia el idioma de todo El jInternalFrame
+     * @param localizacion 
+     */
     public static void cambiarIdioma(Locale localizacion){
          mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
          labelCod.setText(mensajes.getString("cliente.codigo"));
@@ -125,12 +134,12 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        // Cierra la ventana
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        // Elimina Producto por el codigo
          int codigo=Integer.parseInt(txtCodigo.getText());
         controladorProducto.delete(codigo);
         JOptionPane.showMessageDialog(this, "Producto se ha eliminado exitosamente","Producto Eliminado",JOptionPane.OK_OPTION);

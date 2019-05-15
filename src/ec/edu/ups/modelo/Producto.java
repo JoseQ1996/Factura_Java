@@ -11,14 +11,21 @@ package ec.edu.ups.modelo;
  * @author José Quinde
  */
 public class Producto {
-    
+    //Declaracion de Variables
     private int codigo;
     private String nombre;
     private double precio;
-
+    /**
+     * Constructor Vacio
+     */
     public Producto() {
     }
-
+    /**
+     * Constructor ingresa todos los atributos
+     * @param codigo
+     * @param nombre
+     * @param precio 
+     */
     public Producto(int codigo, String nombre, double precio) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -48,7 +55,10 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    /**
+     * Imprime el toString
+     * @return 
+     */
     @Override
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + '}';
