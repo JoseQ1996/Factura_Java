@@ -138,11 +138,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         itmInlges = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Facturización");
 
         clienteMenu.setMnemonic('f');
         clienteMenu.setText("Cliente");
 
         itmCrearCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        itmCrearCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\001-add.png")); // NOI18N
         itmCrearCliente.setMnemonic('o');
         itmCrearCliente.setText("Crear");
         itmCrearCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +155,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteMenu.add(itmCrearCliente);
 
         itmBuscarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        itmBuscarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\006-archive.png")); // NOI18N
         itmBuscarCliente.setMnemonic('s');
         itmBuscarCliente.setText("Buscar");
         itmBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteMenu.add(itmBuscarCliente);
 
         itmActualizarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        itmActualizarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\057-notes.png")); // NOI18N
         itmActualizarCliente.setMnemonic('a');
         itmActualizarCliente.setText("Actualizar");
         itmActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +177,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteMenu.add(itmActualizarCliente);
 
         itmEliminarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        itmEliminarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\031-delete.png")); // NOI18N
         itmEliminarCliente.setMnemonic('x');
         itmEliminarCliente.setText("Eliminar");
         itmEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +188,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteMenu.add(itmEliminarCliente);
 
         itmListarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        itmListarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\023-checklist.png")); // NOI18N
         itmListarCliente.setText("Listar");
         itmListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         productoMenu.setText("Producto");
 
         itmCrearProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        itmCrearProducto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\001-add.png")); // NOI18N
         itmCrearProducto.setText("Crear");
         itmCrearProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +212,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         productoMenu.add(itmCrearProducto);
 
         itmBuscarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        itmBuscarProducto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\006-archive.png")); // NOI18N
         itmBuscarProducto.setText("Buscar");
         itmBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +222,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         productoMenu.add(itmBuscarProducto);
 
         itmActualizarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        itmActualizarProducto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\057-notes.png")); // NOI18N
         itmActualizarProducto.setText("Actualizar");
         itmActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,6 +232,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         productoMenu.add(itmActualizarProducto);
 
         itmEliminarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        itmEliminarProducto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\031-delete.png")); // NOI18N
         itmEliminarProducto.setText("Eliminar");
         itmEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +242,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         productoMenu.add(itmEliminarProducto);
 
         itmListarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        itmListarProducto.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\023-checklist.png")); // NOI18N
         itmListarProducto.setText("Listar");
         itmListarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +256,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         facturaMenu.setText("Factura");
 
         itmCrearFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        itmCrearFactura.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\041-insert.png")); // NOI18N
         itmCrearFactura.setText("Crear");
         itmCrearFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +266,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         facturaMenu.add(itmCrearFactura);
 
         itmBuscarFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        itmBuscarFactura.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\058-number.png")); // NOI18N
         itmBuscarFactura.setText("Buscar");
         itmBuscarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +276,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         facturaMenu.add(itmBuscarFactura);
 
         itmEliminarFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
+        itmEliminarFactura.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\025-clear.png")); // NOI18N
         itmEliminarFactura.setText("Eliminar");
         itmEliminarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +289,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         idiomasMenu.setText("Idiomas");
 
+        itmEspañol.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        itmEspañol.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\084-spell check.png")); // NOI18N
         itmEspañol.setText("Español");
         itmEspañol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,6 +299,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         idiomasMenu.add(itmEspañol);
 
+        itmInlges.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        itmInlges.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\Universidad\\UPS- Sistemas\\Iconos Editor\\png\\084-spell check.png")); // NOI18N
         itmInlges.setText("Ingles");
         itmInlges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
