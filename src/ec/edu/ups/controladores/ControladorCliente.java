@@ -43,6 +43,16 @@ public class ControladorCliente {
         return null;
     }
     
+    public Cliente readCedula(String cedula){
+        for (Cliente cliente : lista) {
+            if(cliente.getCedula().equals(cedula)){
+                return cliente;
+                
+            }
+        }   
+        return null;
+    }
+    
     public void update(Cliente objeto){
         if(lista.contains(objeto)){
             lista.remove(objeto);

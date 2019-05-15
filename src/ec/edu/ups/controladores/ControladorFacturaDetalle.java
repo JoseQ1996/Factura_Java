@@ -6,7 +6,7 @@
 
 package ec.edu.ups.controladores;
 
-import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.FacturaDetalle;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +14,11 @@ import java.util.Set;
  *
  * @author José Quinde
  */
-public class ControladorProducto {
-private Set<Producto> lista;
+public class ControladorFacturaDetalle {
+ private Set<FacturaDetalle> lista;
     private int codigo;
 
-    public ControladorProducto() {
+    public ControladorFacturaDetalle() {
         lista = new HashSet<>();
         codigo = 1;
     }    
@@ -27,24 +27,24 @@ private Set<Producto> lista;
         return codigo;
     }
         
-    public void crear(Producto objeto){
+    public void crear(FacturaDetalle objeto){
         objeto.setCodigo(codigo);
         lista.add(objeto);    
         codigo++;
     }
    
     
-    public Producto read(int codigo){
-        for (Producto producto : lista) {
-            if(producto.getCodigo() == codigo){
-                return producto;
+    public FacturaDetalle read(int codigo){
+        for (FacturaDetalle facturaDetalle : lista) {
+            if(facturaDetalle.getCodigo() == codigo){
+                return facturaDetalle;
             }
         }        
         return null;
     }
     
     
-    public void update(Producto objeto){
+    public void update(FacturaDetalle objeto){
         if(lista.contains(objeto)){
             lista.remove(objeto);
             lista.add(objeto);
@@ -52,19 +52,16 @@ private Set<Producto> lista;
     }
     
     public void delete(int codigo){
-        for (Producto producto : lista) {
-            if(producto.getCodigo() == codigo){
-                lista.remove(producto);
+        for (FacturaDetalle facturaDetalle : lista) {
+            if(facturaDetalle.getCodigo() == codigo){
+                lista.remove(facturaDetalle);
                 break;
             }
         }  
     } 
-     public Set<Producto> getLista(){
+     public Set<FacturaDetalle> getLista(){
  
             return lista;
         
-    }
-    
-    
+    }   
 }
-

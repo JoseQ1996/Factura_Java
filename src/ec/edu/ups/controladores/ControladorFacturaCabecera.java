@@ -6,7 +6,7 @@
 
 package ec.edu.ups.controladores;
 
-import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.FacturaCabecera;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,11 +14,12 @@ import java.util.Set;
  *
  * @author José Quinde
  */
-public class ControladorProducto {
-private Set<Producto> lista;
+public class ControladorFacturaCabecera {
+    
+    private Set<FacturaCabecera> lista;
     private int codigo;
 
-    public ControladorProducto() {
+    public ControladorFacturaCabecera() {
         lista = new HashSet<>();
         codigo = 1;
     }    
@@ -27,24 +28,23 @@ private Set<Producto> lista;
         return codigo;
     }
         
-    public void crear(Producto objeto){
+    public void crear(FacturaCabecera objeto){
         objeto.setCodigo(codigo);
         lista.add(objeto);    
         codigo++;
     }
    
     
-    public Producto read(int codigo){
-        for (Producto producto : lista) {
-            if(producto.getCodigo() == codigo){
-                return producto;
+    public FacturaCabecera read(int codigo){
+        for (FacturaCabecera facturaCabecera : lista) {
+            if(facturaCabecera.getCodigo() == codigo){
+                return facturaCabecera;
             }
         }        
         return null;
     }
     
-    
-    public void update(Producto objeto){
+    public void update(FacturaCabecera objeto){
         if(lista.contains(objeto)){
             lista.remove(objeto);
             lista.add(objeto);
@@ -52,19 +52,16 @@ private Set<Producto> lista;
     }
     
     public void delete(int codigo){
-        for (Producto producto : lista) {
-            if(producto.getCodigo() == codigo){
-                lista.remove(producto);
+        for (FacturaCabecera facCab : lista) {
+            if(facCab.getCodigo() == codigo){
+                lista.remove(facCab);
                 break;
             }
         }  
     } 
-     public Set<Producto> getLista(){
+    public Set<FacturaCabecera> getLista(){
  
             return lista;
         
     }
-    
-    
 }
-

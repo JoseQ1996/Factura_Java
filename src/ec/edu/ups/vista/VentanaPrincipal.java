@@ -6,17 +6,23 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controladores.ControladorCliente;
+import ec.edu.ups.controladores.ControladorFacturaCabecera;
+import ec.edu.ups.controladores.ControladorFacturaDetalle;
 import ec.edu.ups.controladores.ControladorProducto;
 import ec.edu.ups.vista.cliente.VentanaActualizarCliente;
 import ec.edu.ups.vista.cliente.VentanaBuscarCliente;
 import ec.edu.ups.vista.cliente.VentanaCrearCliente;
 import ec.edu.ups.vista.cliente.VentanaEliminarCliente;
 import ec.edu.ups.vista.cliente.VentanaListarClientes;
+import ec.edu.ups.vista.factura.VentanaAgregarFactura;
 import ec.edu.ups.vista.producto.VentanaActualizarProducto;
 import ec.edu.ups.vista.producto.VentanaBuscarProducto;
 import ec.edu.ups.vista.producto.VentanaCrearProducto;
 import ec.edu.ups.vista.producto.VentanaEliminarProducto;
 import ec.edu.ups.vista.producto.VentanaListarProductos;
+import ec.edu.ups.vista.factura.VentanaBuscarFactura;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -27,6 +33,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaCrearCliente crearCliente;
     private ControladorCliente controladorCliente;
     private ControladorProducto controladorProducto;
+    private ControladorFacturaCabecera controladorFacturaCabecera;
+    private ControladorFacturaDetalle controladorFacturaDetalle;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -34,8 +45,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         controladorCliente = new ControladorCliente();
         controladorProducto= new ControladorProducto();
+        controladorFacturaCabecera=new ControladorFacturaCabecera();
+        controladorFacturaDetalle=new ControladorFacturaDetalle();
+        System.out.println("Localizacion por defecto: "+Locale.getDefault().getLanguage());
+        localizacion= new Locale("en","US");
+        Locale.setDefault(localizacion);
+        System.out.println("Localizacion Forzada: "+Locale.getDefault().getLanguage());
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        System.out.println(mensajes.getString("menu.item.crear"));
+        cambiarIdioma();
     }
-
+    
+    public void cambiarIdioma(){
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",Locale.getDefault());
+        //Cambia los menus
+        clienteMenu.setText(mensajes.getString("menu.cliente"));
+        productoMenu.setText(mensajes.getString("menu.producto"));
+        facturaMenu.setText(mensajes.getString("menu.factura"));
+        idiomasMenu.setText(mensajes.getString("menu.idiomas"));
+        //Cambia los textos de Crear
+        itmCrearCliente.setText(mensajes.getString("menu.item.crear"));
+        itmCrearProducto.setText(mensajes.getString("menu.item.crear"));
+        itmCrearFactura.setText(mensajes.getString("menu.item.crear"));
+        //Cambia los Buscar
+        itmBuscarCliente.setText(mensajes.getString("menu.item.buscar"));
+        itmBuscarProducto.setText(mensajes.getString("menu.item.buscar"));
+        itmBuscarFactura.setText(mensajes.getString("menu.item.buscar"));
+        //Cambia los Actualizar
+        itmActualizarCliente.setText(mensajes.getString("menu.item.actualizar"));
+        itmActualizarProducto.setText(mensajes.getString("menu.item.actualizar"));
+        itmActualizarFactura.setText(mensajes.getString("menu.item.actualizar"));
+        //Cambia los Eliminar
+        itmEliminarCliente.setText(mensajes.getString("menu.item.eliminar"));
+        itmEliminarProducto.setText(mensajes.getString("menu.item.eliminar"));
+        itmEliminarFactura.setText(mensajes.getString("menu.item.eliminar"));
+        //Cambio los Listar
+        itmListarCliente.setText(mensajes.getString("menu.item.listar"));
+        itmListarProducto.setText(mensajes.getString("menu.item.listar"));
+        itmListarFactura.setText(mensajes.getString("menu.item.listar"));
+        //Cambio los idiomas
+        itmEspañol.setText(mensajes.getString("menu.item.español"));
+        itmInlges.setText(mensajes.getString("menu.item.ingles"));
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,122 +101,180 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         clienteMenu = new javax.swing.JMenu();
-        crearMenuItem = new javax.swing.JMenuItem();
-        buscarMenuItem = new javax.swing.JMenuItem();
-        actualizarAsMenuItem = new javax.swing.JMenuItem();
-        eliminarMenuItem = new javax.swing.JMenuItem();
-        listarMenuItem = new javax.swing.JMenuItem();
-        crearProducto = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        itmCrearCliente = new javax.swing.JMenuItem();
+        itmBuscarCliente = new javax.swing.JMenuItem();
+        itmActualizarCliente = new javax.swing.JMenuItem();
+        itmEliminarCliente = new javax.swing.JMenuItem();
+        itmListarCliente = new javax.swing.JMenuItem();
+        productoMenu = new javax.swing.JMenu();
+        itmCrearProducto = new javax.swing.JMenuItem();
+        itmBuscarProducto = new javax.swing.JMenuItem();
+        itmActualizarProducto = new javax.swing.JMenuItem();
+        itmEliminarProducto = new javax.swing.JMenuItem();
+        itmListarProducto = new javax.swing.JMenuItem();
+        facturaMenu = new javax.swing.JMenu();
+        itmCrearFactura = new javax.swing.JMenuItem();
+        itmBuscarFactura = new javax.swing.JMenuItem();
+        itmActualizarFactura = new javax.swing.JMenuItem();
+        itmEliminarFactura = new javax.swing.JMenuItem();
+        itmListarFactura = new javax.swing.JMenuItem();
+        idiomasMenu = new javax.swing.JMenu();
+        itmEspañol = new javax.swing.JMenuItem();
+        itmInlges = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         clienteMenu.setMnemonic('f');
         clienteMenu.setText("Cliente");
 
-        crearMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        crearMenuItem.setMnemonic('o');
-        crearMenuItem.setText("Crear");
-        crearMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itmCrearCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        itmCrearCliente.setMnemonic('o');
+        itmCrearCliente.setText("Crear");
+        itmCrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearMenuItemActionPerformed(evt);
+                itmCrearClienteActionPerformed(evt);
             }
         });
-        clienteMenu.add(crearMenuItem);
+        clienteMenu.add(itmCrearCliente);
 
-        buscarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        buscarMenuItem.setMnemonic('s');
-        buscarMenuItem.setText("Buscar");
-        buscarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itmBuscarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        itmBuscarCliente.setMnemonic('s');
+        itmBuscarCliente.setText("Buscar");
+        itmBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarMenuItemActionPerformed(evt);
+                itmBuscarClienteActionPerformed(evt);
             }
         });
-        clienteMenu.add(buscarMenuItem);
+        clienteMenu.add(itmBuscarCliente);
 
-        actualizarAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        actualizarAsMenuItem.setMnemonic('a');
-        actualizarAsMenuItem.setText("Actualizar");
-        actualizarAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itmActualizarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        itmActualizarCliente.setMnemonic('a');
+        itmActualizarCliente.setText("Actualizar");
+        itmActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizarAsMenuItemActionPerformed(evt);
+                itmActualizarClienteActionPerformed(evt);
             }
         });
-        clienteMenu.add(actualizarAsMenuItem);
+        clienteMenu.add(itmActualizarCliente);
 
-        eliminarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        eliminarMenuItem.setMnemonic('x');
-        eliminarMenuItem.setText("Eliminar");
-        eliminarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itmEliminarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        itmEliminarCliente.setMnemonic('x');
+        itmEliminarCliente.setText("Eliminar");
+        itmEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarMenuItemActionPerformed(evt);
+                itmEliminarClienteActionPerformed(evt);
             }
         });
-        clienteMenu.add(eliminarMenuItem);
+        clienteMenu.add(itmEliminarCliente);
 
-        listarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        listarMenuItem.setText("Listar");
-        listarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        itmListarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        itmListarCliente.setText("Listar");
+        itmListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarMenuItemActionPerformed(evt);
+                itmListarClienteActionPerformed(evt);
             }
         });
-        clienteMenu.add(listarMenuItem);
+        clienteMenu.add(itmListarCliente);
 
         menuBar.add(clienteMenu);
 
-        crearProducto.setText("Producto");
+        productoMenu.setText("Producto");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Crear");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        itmCrearProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        itmCrearProducto.setText("Crear");
+        itmCrearProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                itmCrearProductoActionPerformed(evt);
             }
         });
-        crearProducto.add(jMenuItem2);
+        productoMenu.add(itmCrearProducto);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Buscar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        itmBuscarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        itmBuscarProducto.setText("Buscar");
+        itmBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                itmBuscarProductoActionPerformed(evt);
             }
         });
-        crearProducto.add(jMenuItem3);
+        productoMenu.add(itmBuscarProducto);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Actualizar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itmActualizarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        itmActualizarProducto.setText("Actualizar");
+        itmActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itmActualizarProductoActionPerformed(evt);
             }
         });
-        crearProducto.add(jMenuItem1);
+        productoMenu.add(itmActualizarProducto);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Eliminar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        itmEliminarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        itmEliminarProducto.setText("Eliminar");
+        itmEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                itmEliminarProductoActionPerformed(evt);
             }
         });
-        crearProducto.add(jMenuItem4);
+        productoMenu.add(itmEliminarProducto);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("Listar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        itmListarProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        itmListarProducto.setText("Listar");
+        itmListarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                itmListarProductoActionPerformed(evt);
             }
         });
-        crearProducto.add(jMenuItem5);
+        productoMenu.add(itmListarProducto);
 
-        menuBar.add(crearProducto);
+        menuBar.add(productoMenu);
+
+        facturaMenu.setText("Factura");
+
+        itmCrearFactura.setText("Crear");
+        itmCrearFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmCrearFacturaActionPerformed(evt);
+            }
+        });
+        facturaMenu.add(itmCrearFactura);
+
+        itmBuscarFactura.setText("Buscar");
+        itmBuscarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmBuscarFacturaActionPerformed(evt);
+            }
+        });
+        facturaMenu.add(itmBuscarFactura);
+
+        itmActualizarFactura.setText("Actualizar");
+        facturaMenu.add(itmActualizarFactura);
+
+        itmEliminarFactura.setText("Eliminar");
+        facturaMenu.add(itmEliminarFactura);
+
+        itmListarFactura.setText("Listar");
+        facturaMenu.add(itmListarFactura);
+
+        menuBar.add(facturaMenu);
+
+        idiomasMenu.setText("Idiomas");
+
+        itmEspañol.setText("Español");
+        itmEspañol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmEspañolActionPerformed(evt);
+            }
+        });
+        idiomasMenu.add(itmEspañol);
+
+        itmInlges.setText("Ingles");
+        itmInlges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmInlgesActionPerformed(evt);
+            }
+        });
+        idiomasMenu.add(itmInlges);
+
+        menuBar.add(idiomasMenu);
 
         setJMenuBar(menuBar);
 
@@ -172,26 +283,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eliminarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMenuItemActionPerformed
+    private void itmEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarClienteActionPerformed
         VentanaEliminarCliente eliminarCliente = new VentanaEliminarCliente(controladorCliente);
         eliminarCliente.setVisible(true);
         desktopPane.add(eliminarCliente);
-    }//GEN-LAST:event_eliminarMenuItemActionPerformed
+    }//GEN-LAST:event_itmEliminarClienteActionPerformed
 
-    private void crearMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearMenuItemActionPerformed
+    private void itmCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearClienteActionPerformed
         
         if(crearCliente == null || !crearCliente.isVisible()){
             crearCliente = new VentanaCrearCliente(controladorCliente);
@@ -199,62 +310,90 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             desktopPane.add(crearCliente);
         }
         
-    }//GEN-LAST:event_crearMenuItemActionPerformed
+    }//GEN-LAST:event_itmCrearClienteActionPerformed
 
-    private void buscarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMenuItemActionPerformed
+    private void itmBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarClienteActionPerformed
         VentanaBuscarCliente buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
         desktopPane.add(buscarCliente);
-    }//GEN-LAST:event_buscarMenuItemActionPerformed
+    }//GEN-LAST:event_itmBuscarClienteActionPerformed
 
-    private void actualizarAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarAsMenuItemActionPerformed
+    private void itmActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarClienteActionPerformed
         // TODO add your handling code here:
         VentanaActualizarCliente actualizarCliente = new VentanaActualizarCliente(controladorCliente);
         actualizarCliente.setVisible(true);
         desktopPane.add(actualizarCliente);
-    }//GEN-LAST:event_actualizarAsMenuItemActionPerformed
+    }//GEN-LAST:event_itmActualizarClienteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void itmCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearProductoActionPerformed
         // TODO add your handling code here:
         VentanaCrearProducto crearProducto = new VentanaCrearProducto(controladorProducto);
         crearProducto.setVisible(true);
         desktopPane.add(crearProducto);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_itmCrearProductoActionPerformed
 
-    private void listarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMenuItemActionPerformed
+    private void itmListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarClienteActionPerformed
         // TODO add your handling code here:
         VentanaListarClientes listarCliente = new VentanaListarClientes(controladorCliente);
         listarCliente.setVisible(true);
         desktopPane.add(listarCliente);
-    }//GEN-LAST:event_listarMenuItemActionPerformed
+    }//GEN-LAST:event_itmListarClienteActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void itmBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarProductoActionPerformed
         // TODO add your handling code here:
         VentanaBuscarProducto buscarProducto = new VentanaBuscarProducto(controladorProducto);
         buscarProducto.setVisible(true);
         desktopPane.add(buscarProducto);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_itmBuscarProductoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itmActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmActualizarProductoActionPerformed
         // TODO add your handling code here:
          VentanaActualizarProducto actualizarProducto = new VentanaActualizarProducto(controladorProducto);
         actualizarProducto.setVisible(true);
         desktopPane.add(actualizarProducto);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itmActualizarProductoActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void itmEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarProductoActionPerformed
         // TODO add your handling code here:
         VentanaEliminarProducto eliminarProducto = new VentanaEliminarProducto(controladorProducto);
         eliminarProducto.setVisible(true);
         desktopPane.add(eliminarProducto);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_itmEliminarProductoActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void itmListarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListarProductoActionPerformed
         // TODO add your handling code here:
         VentanaListarProductos listarProducto = new VentanaListarProductos(controladorProducto);
         listarProducto.setVisible(true);
         desktopPane.add(listarProducto);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_itmListarProductoActionPerformed
+
+    private void itmInlgesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInlgesActionPerformed
+        // TODO add your handling code here:
+        localizacion=new Locale ("en","US");
+        Locale.setDefault(localizacion);
+        cambiarIdioma();
+    }//GEN-LAST:event_itmInlgesActionPerformed
+
+    private void itmEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEspañolActionPerformed
+        // TODO add your handling code here:
+        localizacion=new Locale ("es","EC");
+        Locale.setDefault(localizacion);
+        cambiarIdioma();
+    }//GEN-LAST:event_itmEspañolActionPerformed
+
+    private void itmCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCrearFacturaActionPerformed
+        // TODO add your handling code here:
+        VentanaAgregarFactura agregarFactura=new VentanaAgregarFactura(controladorFacturaCabecera,controladorCliente,controladorProducto,controladorFacturaDetalle);
+        agregarFactura.setVisible(true);
+        desktopPane.add(agregarFactura);
+    }//GEN-LAST:event_itmCrearFacturaActionPerformed
+
+    private void itmBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBuscarFacturaActionPerformed
+        // TODO add your handling code here:
+        VentanaBuscarFactura buscarFactura=new VentanaBuscarFactura(controladorFacturaCabecera,controladorCliente,controladorFacturaDetalle,controladorProducto);
+        buscarFactura.setVisible(true);
+        desktopPane.add(buscarFactura);
+    }//GEN-LAST:event_itmBuscarFacturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,20 +431,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem actualizarAsMenuItem;
-    private javax.swing.JMenuItem buscarMenuItem;
     private javax.swing.JMenu clienteMenu;
-    private javax.swing.JMenuItem crearMenuItem;
-    private javax.swing.JMenu crearProducto;
-    private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem eliminarMenuItem;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem listarMenuItem;
+    public static javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenu facturaMenu;
+    private javax.swing.JMenu idiomasMenu;
+    private javax.swing.JMenuItem itmActualizarCliente;
+    private javax.swing.JMenuItem itmActualizarFactura;
+    private javax.swing.JMenuItem itmActualizarProducto;
+    private javax.swing.JMenuItem itmBuscarCliente;
+    private javax.swing.JMenuItem itmBuscarFactura;
+    private javax.swing.JMenuItem itmBuscarProducto;
+    private javax.swing.JMenuItem itmCrearCliente;
+    private javax.swing.JMenuItem itmCrearFactura;
+    private javax.swing.JMenuItem itmCrearProducto;
+    private javax.swing.JMenuItem itmEliminarCliente;
+    private javax.swing.JMenuItem itmEliminarFactura;
+    private javax.swing.JMenuItem itmEliminarProducto;
+    private javax.swing.JMenuItem itmEspañol;
+    private javax.swing.JMenuItem itmInlges;
+    private javax.swing.JMenuItem itmListarCliente;
+    private javax.swing.JMenuItem itmListarFactura;
+    private javax.swing.JMenuItem itmListarProducto;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu productoMenu;
     // End of variables declaration//GEN-END:variables
 
 }
