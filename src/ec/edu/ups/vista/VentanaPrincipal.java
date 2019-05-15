@@ -21,6 +21,7 @@ import ec.edu.ups.vista.producto.VentanaCrearProducto;
 import ec.edu.ups.vista.producto.VentanaEliminarProducto;
 import ec.edu.ups.vista.producto.VentanaListarProductos;
 import ec.edu.ups.vista.factura.VentanaBuscarFactura;
+import ec.edu.ups.vista.factura.VentanaEliminarFactura;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -74,7 +75,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Cambia los Actualizar
         itmActualizarCliente.setText(mensajes.getString("menu.item.actualizar"));
         itmActualizarProducto.setText(mensajes.getString("menu.item.actualizar"));
-        itmActualizarFactura.setText(mensajes.getString("menu.item.actualizar"));
         //Cambia los Eliminar
         itmEliminarCliente.setText(mensajes.getString("menu.item.eliminar"));
         itmEliminarProducto.setText(mensajes.getString("menu.item.eliminar"));
@@ -82,7 +82,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Cambio los Listar
         itmListarCliente.setText(mensajes.getString("menu.item.listar"));
         itmListarProducto.setText(mensajes.getString("menu.item.listar"));
-        itmListarFactura.setText(mensajes.getString("menu.item.listar"));
         //Cambio los idiomas
         itmEspañol.setText(mensajes.getString("menu.item.español"));
         itmInlges.setText(mensajes.getString("menu.item.ingles"));
@@ -115,9 +114,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         facturaMenu = new javax.swing.JMenu();
         itmCrearFactura = new javax.swing.JMenuItem();
         itmBuscarFactura = new javax.swing.JMenuItem();
-        itmActualizarFactura = new javax.swing.JMenuItem();
         itmEliminarFactura = new javax.swing.JMenuItem();
-        itmListarFactura = new javax.swing.JMenuItem();
         idiomasMenu = new javax.swing.JMenu();
         itmEspañol = new javax.swing.JMenuItem();
         itmInlges = new javax.swing.JMenuItem();
@@ -229,6 +226,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         facturaMenu.setText("Factura");
 
+        itmCrearFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         itmCrearFactura.setText("Crear");
         itmCrearFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +235,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         facturaMenu.add(itmCrearFactura);
 
+        itmBuscarFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         itmBuscarFactura.setText("Buscar");
         itmBuscarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,14 +244,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         facturaMenu.add(itmBuscarFactura);
 
-        itmActualizarFactura.setText("Actualizar");
-        facturaMenu.add(itmActualizarFactura);
-
+        itmEliminarFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         itmEliminarFactura.setText("Eliminar");
+        itmEliminarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmEliminarFacturaActionPerformed(evt);
+            }
+        });
         facturaMenu.add(itmEliminarFactura);
-
-        itmListarFactura.setText("Listar");
-        facturaMenu.add(itmListarFactura);
 
         menuBar.add(facturaMenu);
 
@@ -395,6 +394,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desktopPane.add(buscarFactura);
     }//GEN-LAST:event_itmBuscarFacturaActionPerformed
 
+    private void itmEliminarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEliminarFacturaActionPerformed
+        // TODO add your handling code here:
+        VentanaEliminarFactura eliminarFactura=new VentanaEliminarFactura(controladorFacturaCabecera);
+        eliminarFactura.setVisible(true);
+        desktopPane.add(eliminarFactura);
+    }//GEN-LAST:event_itmEliminarFacturaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -436,7 +442,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu facturaMenu;
     private javax.swing.JMenu idiomasMenu;
     private javax.swing.JMenuItem itmActualizarCliente;
-    private javax.swing.JMenuItem itmActualizarFactura;
     private javax.swing.JMenuItem itmActualizarProducto;
     private javax.swing.JMenuItem itmBuscarCliente;
     private javax.swing.JMenuItem itmBuscarFactura;
@@ -450,7 +455,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmEspañol;
     private javax.swing.JMenuItem itmInlges;
     private javax.swing.JMenuItem itmListarCliente;
-    private javax.swing.JMenuItem itmListarFactura;
     private javax.swing.JMenuItem itmListarProducto;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu productoMenu;
